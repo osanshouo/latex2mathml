@@ -1,7 +1,12 @@
 # latex2mathml
+[![Crate](http://meritbadge.herokuapp.com/latex2mathml)](https://crates.io/crates/latex2mathml)
+[![docs.rs](https://docs.rs/latex2mathml/badge.svg)](https://docs.rs/latex2mathml/)
 
 `latex2mathml` provides a functionality to convert LaTeX math equations to MathML.
 This crate is implemented in pure Rust, so it works in any environments if Rust works (including WebAssembly).
+
+- [WebAssembly example](https://osanshouo.github.io/latex2mathml-web/index.html)
+
 
 # Supported LaTeX commands
 
@@ -13,12 +18,14 @@ This crate is implemented in pure Rust, so it works in any environments if Rust 
 - Basic LaTeX commands, e.g. `\sqrt`, `\frac`, `\sin`, ...
 - Integrals, e.g., `\int`, `\int_0^\infty`, `\iint`, `\oint`, ...
 - Big operators, e.g., `\sum`, `\prod`, `\bigcup_{i = 0}^\infty`, ...
+- Limits and overset/underset, e.g., `\lim`, `\overset{}{}`, `\overbrace{}{}`, ...
 - Font styles, e.g. `\mathrm`, `\mathbf`, `\bm`, `\mathit`, `\mathsf`, `\mathscr`, `\mathbb`, `\mathfrak`, `\texttt`.
   - MathML lacks calligraphic mathvariant: https://github.com/mathml-refresh/mathml/issues/61
 - White spaces, e.g., `\!`, `\,`, `\:`, `\;`, `\ `, `\quad`, `\qquad`.
 - Matrix, e.g. `\begin{matrix}`, `\begin{pmatrix}`, `\begin{bmatrix}`, `\begin{vmatrix}`.
+- Feynman slash notation: `\slashed{\partial}`.
 
-See `examples/equations.rs` for examples.
+See `examples/equations.rs` for examples. Note that all supported commands are defined in `src/token.rs`.
 
 ## Unsupported LaTeX commands
 
@@ -46,9 +53,12 @@ For a document that includes LaTeX equations:
 
 ```rust
 let text = r#"
-Let us consider a rigid sphere (i.e., one having a spherical figure when tested in the stationary system) of radius $R$ 
-which is at rest relative to the system ($K$), and whose centre coincides with the origin of $K$ then the equation of the 
-surface of this sphere, which is moving with a velocity $v$ relative to $K$, is
+Let us consider a rigid sphere (i.e., one having a spherical 
+figure when tested in the stationary system) of radius $R$ 
+which is at rest relative to the system ($K$), and whose centre 
+coincides with the origin of $K$ then the equation of the 
+surface of this sphere, which is moving with a velocity $v$ 
+relative to $K$, is
 $$\xi^2 + \eta^2 + \zeta^2 = R^2$$
 "#;
 let mathml = latex2mathml::replace(text).unwrap();
