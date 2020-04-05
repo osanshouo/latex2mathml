@@ -4,7 +4,8 @@ fn main() {
     let inputs = vec![
         r#"f ( x ) := a x^2 + b x + c"#,
         r#"x = \frac{ - b \pm \sqrt{ b^2 - 4 a c } }{ 2 a }"#,
-        r#"\cos^2 x + \sin^2 x = 1"#,
+        r#"\cos^2 \theta + \sin^2 \theta = 1"#,
+        r#"\frac{ d }{ d x } \tan x = \frac{ 1 }{ \cos^2 x }"#,
         r#"\angle \mathrm{OAB} = \arccos \left\{ \vec{\mathrm{OA}} \cdot \vec{\mathrm{OB}} \right\}"#,
         r#"f' ( x ) = \lim_{h \to 0} \frac{ f ( x + h ) - f ( x ) }{ h }"#,
         r#"\erf ( x ) = \frac{ 2 }{ \sqrt{ \pi } } \int_0^x e^{- t^2} \, dt"#,
@@ -29,6 +30,7 @@ fn main() {
         r#"\Xi = \sum_\mathbf{n} \exp \left\{ - \beta ( E_\mathbf{n} - \mu N_\mathbf{n} ) \right\}"#,
         r#"i \hbar \frac{ d }{ d t } | \psi \rangle = \hat{H} | \psi \rangle"#,
         r#"R_{\mu \nu} - \frac{ 1 }{ 2 } R g_{\mu \nu} = \frac{ 8 \pi G }{ c^4 } T_{\mu \nu}"#,
+        r#"- \frac{ 1 }{ 2 } g^{\mu \nu} \partial_\mu \partial_\nu \phi"#,
         r#"\frac{ \partial \phi }{ \partial t } = D \nabla^2 \phi"#,
         r#"i \slashed{\partial} \psi - m \psi = 0"#,
         r#"\mathscr{O} ( N \ln N )"#,
@@ -37,6 +39,8 @@ fn main() {
         \begin{matrix} a & b \\ c & d \end{matrix} , 
         \begin{bmatrix} a & b \\ c & d \end{bmatrix} , 
         \begin{vmatrix} a & b \\ c & d \end{vmatrix}"#,
+        r#"\lambda_\text{Compton} = \frac{ 2 \pi \hbar }{ m c }"#,
+        r#"\int Y_{\ell m} ( \Omega ) Y_{\ell' m'} ( \Omega ) \, d^2 \Omega = \delta_{\ell \ell'} \delta_{m m'}"#,
     ];
 
     let outputs = inputs.iter()
