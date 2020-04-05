@@ -39,7 +39,9 @@ impl fmt::Display for Node {
                 Variant::Italic => write!(f, "<mi>{}</mi>", letter),
                 var             => write!(f, r#"<mi mathvariant="{}">{}</mi>"#, var, letter),
             },
-            Node::Operator(op) => write!(f, r#"<mo>{}</mo>"#, op),
+            Node::Operator(op) => if op == &'∂' {
+                write!(f, r#"<mo mathvariant="italic">∂</mo>"#)
+            } else { write!(f, r#"<mo>{}</mo>"#, op) },
             Node::Function(fun, arg) => match arg {
                 Some(arg) => write!(f, "<mi>{}</mi><mo>&#x2061;</mo>{}", fun, arg),
                 None      => write!(f, "<mi>{}</mi>", fun),
