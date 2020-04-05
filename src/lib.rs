@@ -3,6 +3,11 @@
 //! Provides a functionility to convert LaTeX math equations to MathML representation.
 //! This crate is implemented in pure Rust, so it works for all platforms including WebAssembly.
 //! 
+//! # Usage
+//! 
+//!  Main functions of this crate are  [`latex_to_mathml`](./fn.latex_to_mathml.html) and 
+//! [`replace`](./fn.replace.html).
+//! 
 //! ```rust
 //! use latex2mathml::{latex_to_mathml, DisplayStyle};
 //! 
@@ -10,8 +15,17 @@
 //! let mathml = latex_to_mathml(latex, DisplayStyle::Block).unwrap();
 //! println!("{}", mathml);
 //! ```
+//! 
 //! For converting a document including LaTeX equasions, the function [`replace`](./fn.replace.html) 
 //! may be useful.
+//! 
+//! ```rust
+//! let latex = r#"The error function $\erf ( x )$ is defined by
+//! $$\erf ( x ) = \frac{ 2 }{ \sqrt{ \pi } } \int_0^x e^{- t^2} \, dt .$$"#;
+//! 
+//! let mathml = latex2mathml::replace(latex).unwrap();
+//! println!("{}", mathml);
+//! ```
 //! 
 //! For more examples please check `examples/equations.rs` and `examples/document.rs`.
 //! 
@@ -80,8 +94,8 @@ pub fn latex_to_mathml(latex: &str, display: DisplayStyle) -> Result<String, err
 
 /// Find LaTeX equations and replace them to MathML.
 /// 
-/// - inline-math: `
-/// - display-math: `$$..$$`.
+/// - inline-math: `$..$`
+/// - display-math: `$$..$$`
 /// 
 /// Note that dollar signs that do not enclose a LaTeX equation (e.g. `This apple is $3.`) must not appear 
 /// in the input string. For HTML, please use `&dollar;` instead of `$`.

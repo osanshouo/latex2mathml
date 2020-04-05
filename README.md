@@ -9,7 +9,7 @@ This crate is implemented in pure Rust, so it works in any environments if Rust 
 - ASCII and Greek (and more) letters, e.g. `x`, `\alpha`, `\pi`, `\aleph`, ...
 - Symbols, e.g., `\infty`, `\dagger`, `\angle`, `\Box`, `\partial`, ...
 - Binary relations, e.g. `=`, `>`, `<`, ...
-- Binary operations, e.g. `+`. `-`, `*`, `/`, ...
+- Binary operations, e.g. `+`. `-`, `*`, `/`, `\times`, ...
 - Basic LaTeX commands, e.g. `\sqrt`, `\frac`, `\sin`, ...
 - Integrals, e.g., `\int`, `\int_0^\infty`, `\iint`, `\oint`, ...
 - Big operators, e.g., `\sum`, `\prod`, `\bigcup_{i = 0}^\infty`, ...
@@ -22,7 +22,8 @@ See `examples/equations.rs` for examples.
 
 ## Unsupported LaTeX commands
 
-- New line `\n`, except for ones in a matrix.
+- New line `\\`, except for ones in a matrix.
+- Alignment `&`.
 - Multi-line expressions, e.g. `\begin{align}..\end{align}`.
 - Complicated sub/superscripts (`<mmultiscripts>`).
 
@@ -52,7 +53,6 @@ $$\xi^2 + \eta^2 + \zeta^2 = R^2$$
 "#;
 let mathml = latex2mathml::replace(text).unwrap();
 println!("{}", mathml);
-}
 ```
 
 See also `examples/equations.rs` and `examples/document.rs`.
