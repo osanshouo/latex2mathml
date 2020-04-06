@@ -30,7 +30,8 @@ See `examples/equations.rs` for examples. Note that all supported commands are d
 ## Unsupported LaTeX commands
 
 - New line `\\`, except for ones in a matrix.
-- Alignment `&`.
+- Alignment `&`, except for ones in a matrix.
+- Dollar sign `\$`.
 - Multi-line expressions, e.g. `\begin{align}..\end{align}`.
 - Complicated sub/superscripts (`<mmultiscripts>`).
 
