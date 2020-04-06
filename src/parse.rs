@@ -123,30 +123,32 @@ impl<'a> Parser<'a> {
                 let target = self.parse_node()?;
                 Node::Underset{under: Box::new(under), target: Box::new(target)}
             },
-            Token::Overbrace => {
+            Token::Overbrace(x) => {
+                let x = *x;
                 self.next_token();
                 let target = self.parse_single_node()?;
                 if self.peek_token_is(Token::Circumflex) {
                     self.next_token();
                     self.next_token();
                     let expl = self.parse_single_node()?;
-                    let over = Node::Overset{over: Box::new(expl), target: Box::new(Node::Operator('\u{23de}'))};
+                    let over = Node::Overset{over: Box::new(expl), target: Box::new(Node::Operator(x))};
                     Node::Overset{over: Box::new(over), target: Box::new(target)}
                 } else {
-                    Node::Overset{over: Box::new(Node::Operator('\u{23de}')), target: Box::new(target)}
+                    Node::Overset{over: Box::new(Node::Operator(x)), target: Box::new(target)}
                 }
             },
-            Token::Underbrace => {
+            Token::Underbrace(x) => {
+                let x = *x;
                 self.next_token();
                 let target = self.parse_single_node()?;
                 if self.peek_token_is(Token::Underscore) {
                     self.next_token();
                     self.next_token();
                     let expl = self.parse_single_node()?;
-                    let under = Node::Underset{under: Box::new(expl), target: Box::new(Node::Operator('\u{23df}'))};
+                    let under = Node::Underset{under: Box::new(expl), target: Box::new(Node::Operator(x))};
                     Node::Underset{under: Box::new(under), target: Box::new(target)}
                 } else {
-                    Node::Underset{under: Box::new(Node::Operator('\u{23df}')), target: Box::new(target)}
+                    Node::Underset{under: Box::new(Node::Operator(x)), target: Box::new(target)}
                 }
             },
             Token::BigOp(op) => {
