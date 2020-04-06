@@ -98,7 +98,8 @@ pub fn latex_to_mathml(latex: &str, display: DisplayStyle) -> Result<String, err
 /// - display-math: `$$..$$`
 /// 
 /// Note that dollar signs that do not enclose a LaTeX equation (e.g. `This apple is $3.`) must not appear 
-/// in the input string. For HTML, please use `&dollar;` instead of `$`.
+/// in the input string. Dollar sings in LaTeX equation (i.e. `\$` command) must also not appear.
+/// Please use `&dollar;`, instead of `$`, outside LaTeX equations.
 /// 
 /// ```rust
 /// let input = r#"$E = m c^2$ is the most famous equation derived by Einstein.

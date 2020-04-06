@@ -31,9 +31,11 @@ See `examples/equations.rs` for examples. Note that all supported commands are d
 
 - New line `\\`, except for ones in a matrix.
 - Alignment `&`, except for ones in a matrix.
-- Dollar sign `\$`.
 - Multi-line expressions, e.g. `\begin{align}..\end{align}`.
 - Complicated sub/superscripts (`<mmultiscripts>`).
+
+Dollar sign `\$` is allowed for the `latex_to_mathml` function, but the `replace` function does not allow it.
+This is because the `replace` function assumes all dollar signs appear as boundaries of LaTeX equations.
 
 If a feature you need is lacked, feel free to open an issue.
 

@@ -257,6 +257,7 @@ impl Token {
             "_"          => Token::Letter('_', Variant::Normal),
             "&"          => Token::Letter('&', Variant::Normal),
             "#"          => Token::Letter('#', Variant::Normal),
+            "$"          => Token::Letter('$', Variant::Normal),
             "copyright"  => Token::Letter('©', Variant::Normal),
             "checkmark"  => Token::Letter('✓', Variant::Normal),
             "circledR"   => Token::Letter('Ⓡ', Variant::Normal),
