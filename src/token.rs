@@ -274,7 +274,6 @@ impl Token {
             "flat"        => Token::Letter('♭', Variant::Normal),
             "natural"     => Token::Letter('♮', Variant::Normal),
             "sharp"       => Token::Letter('♯', Variant::Normal),
-            "$"          => Token::Letter('$', Variant::Normal),
             "pounds"     => Token::Letter('£', Variant::Normal),
             "textyen"    => Token::Letter('¥', Variant::Normal),
             "euro"       => Token::Letter('€', Variant::Normal),
