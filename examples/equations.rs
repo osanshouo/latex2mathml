@@ -12,8 +12,11 @@ fn main() {
         r#"\sum_{n = 1}^\infty \frac{ 1 }{ n^2 } = \frac{ \pi^2 }{ 6 }"#,
         r#"F_{n+1} = F_n + F_{n-1}"#,
         r#"x \in \mathbb{R}, \ \ z \in \mathbb{C}"#,
-        r#"\overset{(n)}{X}, \underset{(n)}{X}, \ \overbrace{x\times\cdots x}, \overbrace{x\times\cdots\times x}^{n}, \underbrace{x\times\cdots\times x}, \underbrace{x\times\cdots\times x}_{n}"#,
-        r#"X \overset{f}{\rightarrow} Y \underset{g}{\rightarrow} Z"#,
+        r#"\overset{(n)}{X}, \underset{(n)}{X}, \ 
+        \overbrace{x\times\cdots x}, \overbrace{x\times\cdots\times x}^{n}, \underbrace{x\times\cdots\times x}, \underbrace{x\times\cdots\times x}_{n}"#,
+        r#"\overparen{x\times\cdots x}, \overparen{x\times\cdots\times x}^{n}, \underparen{x\times\cdots\times x}, \underparen{x\times\cdots\times x}_{n} , \ 
+        \overbracket{x\times\cdots x}, \overbracket{x\times\cdots\times x}^{n}, \underbracket{x\times\cdots\times x}, \underbracket{x\times\cdots\times x}_{n}"#,
+        r#"X \overset{f}{\rightarrow} Y \underset{g}{\rightarrow} Z , \ h \overset{\text{def}}{=} g \circ f"#,
         r#"\overline{x + y} , \underline{x + y}, \widehat{x + y}, \widetilde{x + y} , \overrightarrow{A + B} , \overleftarrow{A + B}"#,
         r#"\mu \left( \bigcup_i E_i \right) = \sum_i \mu ( E_i )"#,
         r#"\forall \epsilon > 0 \exists \delta > 0 \forall y \left[ | y - x | < \delta \Rightarrow | f ( y ) - f ( x ) | < \epsilon \right]"#,
