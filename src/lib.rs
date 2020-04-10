@@ -37,7 +37,7 @@ pub(crate) mod lexer;
 pub(crate) mod parse;
 mod error;
 pub use error::LatexError;
-use std::fmt;
+use std::{fmt, fs, path::Path, io::Write};
 
 /// display style
 #[derive(Debug, Clone)]
@@ -183,6 +183,44 @@ pub fn replace(input: &str) -> Result<String, error::LatexError> {
         Ok(String::from_utf8_unchecked(input))
     }
 }
+
+
+/// Convert all LaTeX expressions for all HTMLs in a given directory.
+/// 
+/// The argument of this function can be a file name or a directory name. 
+/// For the latter case, all HTML files in the directory is coneverted.
+/// 
+/// Note that this function uses `latex2mathml::replace`, so the dollar signs
+/// are not allowed except for ones enclosing a LaTeX expression.
+pub fn convert_html<P: AsRef<Path>>(path: P) -> Result<(), Box<dyn std::error::Error>> {
+    if path.as_ref().is_dir() {
+        for entry in fs::read_dir(path)?.filter_map(Result::ok) {
+            convert_html(&entry.path())?
+        }
+    } else if path.as_ref().is_file() {
+        if let Some(ext) = path.as_ref().extension() {
+            if ext == "html" {
+                match convert_latex(&path) {
+                    Ok(_) => (),
+                    Err(e) => eprintln!("LaTeX2MathML Error: {}", e),
+                }
+            }
+        }
+    }
+    
+    Ok(())
+}
+
+fn convert_latex<P: AsRef<Path>>(fp: P) -> Result<(), Box<dyn std::error::Error>> {
+    let original = fs::read_to_string(&fp)?;
+    let converted = replace(&original)?;
+    if &original != &converted {
+        let mut fp = fs::File::create(fp)?;
+        fp.write_all(converted.as_bytes())?;
+    }
+    Ok(())
+}
+
 
 #[cfg(test)]
 mod tests {
