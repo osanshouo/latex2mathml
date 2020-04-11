@@ -314,6 +314,7 @@ impl Token {
             "lor"    => Token::Operator('∨'),
             "sim"    => Token::Operator('∼'),
             "simeq"  => Token::Operator('≃'),
+            "nsim"   => Token::Operator('≁'),
             "cong"   => Token::Operator('≅'),
             "approx" => Token::Operator('≈'),
             "ne"     => Token::Operator('≠'),
