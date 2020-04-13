@@ -40,7 +40,7 @@ pub use error::LatexError;
 use std::{fmt, fs, path::Path, io::Write};
 
 /// display style
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 pub enum DisplayStyle {
     Block,
     Inline
