@@ -1,6 +1,6 @@
 [package]
 name = "latex2mathml"
-version = "0.1.2"
+version = "0.2.0"
 authors = ["Hiromu Sugiura <h.sugiura0705@outlook.com>"]
 edition = "2018"
 
