@@ -78,7 +78,7 @@ impl<'a> Parser<'a> {
             Token::Number(number) => Node::Number(number.clone()),
             Token::Letter(x, v)   => Node::Letter(*x, *v),
             Token::Operator(op) => Node::Operator(*op),
-            Token::Function(fun)  => Node::Function(fun, None),
+            Token::Function(fun)  => Node::Function(fun.to_string(), None),
             Token::Space(space) => Node::Space(*space),
             Token::Sqrt => {
                 self.next_token();
@@ -184,7 +184,7 @@ impl<'a> Parser<'a> {
                 }
             },
             Token::Lim(lim) => {
-                let lim = Node::Function(lim, None);
+                let lim = Node::Function(lim.to_string(), None);
                 if self.peek_token_is(Token::Underscore) {
                     self.next_token();
                     self.next_token();
@@ -282,6 +282,12 @@ impl<'a> Parser<'a> {
                 let _ = self.parse_text();
                     
                 matrix
+            },
+            Token::OperatorName => {
+                self.next_token();
+                // 関数名を読み込む
+                let function = self.parse_text();
+                Node::Function(function, None)
             },
             Token::Text => {
                 self.next_token();

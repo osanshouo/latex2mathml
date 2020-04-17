@@ -7,7 +7,7 @@ pub enum Node {
     Number(String),
     Letter(char, Variant),
     Operator(char),
-    Function(&'static str, Option<Box<Node>>),
+    Function(String, Option<Box<Node>>),
     Space(f32),
     Subscript(Box<Node>, Box<Node>),
     Superscript(Box<Node>, Box<Node>),

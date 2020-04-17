@@ -272,6 +272,9 @@ mod tests {
             (r"x^2",          "<msup><mi>x</mi><mn>2</mn></msup>"),
             (r"g_{\mu\nu}",   "<msub><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub>"),
             (r"\dot{x}",      "<mover><mi>x</mi><mo accent=\"true\">\u{02d9}</mo></mover>"),
+            (r"\sin x",       r#"<mi>sin</mi><mi>x</mi>"#),
+            (r"\operatorname{sn} x", r#"<mi>sn</mi><mi>x</mi>"#),
+            (r"\left( x \right)", r#"<mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow>"#),
             (r"\int dx",      r#"<mo>∫</mo><mi>d</mi><mi>x</mi>"#),
             (r"\oint_C dz",   r#"<msub><mo>∮</mo><mi>C</mi></msub><mi>d</mi><mi>z</mi>"#),
             (r"\overset{n}{X}", "<mover><mi>X</mi><mi>n</mi></mover>"),
@@ -282,7 +285,6 @@ mod tests {
             (r"\sum_{i = 0}^∞ i", r#"<munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mi>i</mi>"#),
             (r"\prod_n n",        r#"<munder><mo>∏</mo><mi>n</mi></munder><mi>n</mi>"#),
             (r"x\ y",         r#"<mi>x</mi><mspace width="1em"/><mi>y</mi>"#),
-            (r"\left( x \right)", r#"<mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow>"#),
             (
                 r"\left\{ x  ( x + 2 ) \right\}", 
                 r#"<mrow><mo stretchy="true" form="prefix">{</mo><mrow><mi>x</mi><mo>(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo>)</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow>"#
