@@ -1,5 +1,5 @@
 use std::fmt;
-use super::attribute::{Variant, Accent};
+use super::attribute::{Variant, Accent, ColumnAlign};
 
 /// AST node
 #[derive(Debug, Clone, PartialEq)]
@@ -24,7 +24,7 @@ pub enum Node {
     Fenced { open: &'static str, close: &'static str, content: Box<Node> },
     OtherOperator(&'static str),
     Text(String),
-    Matrix(Vec<Node>),
+    Matrix(Vec<Node>, ColumnAlign),
     Ampersand,
     NewLine,
     Slashed(Box<Node>),
@@ -73,8 +73,8 @@ impl fmt::Display for Node {
                 Node::Operator(x) => write!(f, "<mo>{}&#x0338;</mo>", x),
                 n => write!(f, "{}", n),
             },
-            Node::Matrix(content) => {
-                let mut mathml = "<mtable><mtr><mtd>".to_owned();
+            Node::Matrix(content, columnalign) => {
+                let mut mathml = format!("<mtable{}><mtr><mtd>", columnalign);
                 for (i, node) in content.iter().enumerate() {
                     match node {
                         Node::NewLine => {

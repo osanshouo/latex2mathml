@@ -1,5 +1,5 @@
 use super::{
-    attribute::{Variant, Accent},
+    attribute::{Variant, Accent, ColumnAlign},
     token::Token, 
     lexer::Lexer,
     ast::Node,
@@ -263,13 +263,15 @@ impl<'a> Parser<'a> {
                 self.next_token();
                 // 環境名を読み込む
                 let environment = self.parse_text();
-                let environment = if &environment == "align" { "matrix".to_owned() } else { environment };
+                let (columnalign, environment) = if &environment == "align" { 
+                    (ColumnAlign::Left, "matrix".to_owned())
+                } else { (ColumnAlign::Center, environment) };
                 // \begin..\end の中身を読み込む
                 let content = match self.parse_group(&Token::End)? {
                     Node::Row(content) => content,
                     content => vec![content],
                 };
-                let content = Node::Matrix(content);
+                let content = Node::Matrix(content, columnalign);
 
                 // 環境名により処理を分岐
                 let matrix = match environment.as_str() {
