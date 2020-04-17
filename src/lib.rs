@@ -222,7 +222,6 @@ pub fn replace(input: &str) -> Result<String, error::LatexError> {
 /// will be converted into MathML. 
 /// 
 pub fn convert_html<P: AsRef<Path>>(path: P) -> Result<(), Box<dyn std::error::Error>> {
-    eprintln!("{:?}", path.as_ref());
     if path.as_ref().is_dir() {
         for entry in fs::read_dir(path)?.filter_map(Result::ok) {
             convert_html(&entry.path())?
