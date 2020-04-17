@@ -263,6 +263,7 @@ impl<'a> Parser<'a> {
                 self.next_token();
                 // 環境名を読み込む
                 let environment = self.parse_text();
+                let environment = if &environment == "align" { "matrix".to_owned() } else { environment };
                 // \begin..\end の中身を読み込む
                 let content = match self.parse_group(&Token::End)? {
                     Node::Row(content) => content,
