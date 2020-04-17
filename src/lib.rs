@@ -1,7 +1,32 @@
 //! latex2mathml
 //! 
-//! Provides a functionility to convert LaTeX math equations to MathML representation.
+//! Provides a functionality to convert LaTeX math equations to MathML representation.
 //! This crate is implemented in pure Rust, so it works for all platforms including WebAssembly.
+//! 
+//! # Supported LaTeX commands
+//! 
+//! - Numbers, e.g. `0`, `3.14`, ...
+//! - ASCII and Greek (and more) letters, e.g. `x`, `\alpha`, `\pi`, `\aleph`, ...
+//! - Symbols, e.g., `\infty`, `\dagger`, `\angle`, `\Box`, `\partial`, ...
+//! - Binary relations, e.g. `=`, `>`, `<`, `\ll`, ...
+//! - Binary operations, e.g. `+`. `-`, `*`, `/`, `\times`, `\otimes`, ...
+//! - Basic LaTeX commands, e.g. `\sqrt`, `\frac`, `\sin`, ...
+//! - Integrals, e.g., `\int`, `\int_0^\infty`, `\iint`, `\oint`, ...
+//! - Big operators, e.g., `\sum`, `\prod`, `\bigcup_{i = 0}^\infty`, ...
+//! - Limits and overset/underset, e.g., `\lim`, `\overset{}{}`, `\overbrace{}{}`, ...
+//! - Font styles, e.g. `\mathrm`, `\mathbf`, `\bm`, `\mathit`, `\mathsf`, `\mathscr`, `\mathbb`, `\mathfrak`, `\texttt`.
+//!   - MathML lacks calligraphic mathvariant: https://github.com/mathml-refresh/mathml/issues/61
+//! - White spaces, e.g., `\!`, `\,`, `\:`, `\;`, `\ `, `\quad`, `\qquad`.
+//! - Matrix, e.g. `\begin{matrix}`, `\begin{pmatrix}`, `\begin{bmatrix}`, `\begin{vmatrix}`.
+//! - Multi-line equation `\begin{align}` (experimental).
+//! - Feynman slash notation: `\slashed{\partial}`.
+//! 
+//! ## Unsupported LaTeX commands
+//! 
+//! - New line `\\`, except for ones in a matrix or align environment.
+//! - Alignment `&`, except for ones in a matrix or align environment.
+//! - Complicated sub/superscripts (`<mmultiscripts>`).
+//! 
 //! 
 //! # Usage
 //! 
@@ -16,7 +41,7 @@
 //! println!("{}", mathml);
 //! ```
 //! 
-//! For converting a document including LaTeX equasions, the function [`replace`](./fn.replace.html) 
+//! For converting a document including LaTeX equations, the function [`replace`](./fn.replace.html) 
 //! may be useful.
 //! 
 //! ```rust
