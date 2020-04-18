@@ -19,6 +19,7 @@ fn main() {
         \overbracket{x\times\cdots x}, \overbracket{x\times\cdots\times x}^{n}, \underbracket{x\times\cdots\times x}, \underbracket{x\times\cdots\times x}_{n}"#,
         r#"X \overset{f}{\rightarrow} Y \underset{g}{\rightarrow} Z , \ h \overset{\text{def}}{=} g \circ f"#,
         r#"\overline{x + y} , \underline{x + y}, \widehat{x + y}, \widetilde{x + y} , \overrightarrow{A + B} , \overleftarrow{A + B}"#,
+        r#"\left. \frac{\pi}{2} \right\} \, \left( x \right) \, \left\{ \frac12 \right."#,
         r#"\mu \left( \bigcup_i E_i \right) = \sum_i \mu ( E_i )"#,
         r#"\forall \epsilon > 0 \exists \delta > 0 \forall y \left[ | y - x | < \delta \Rightarrow | f ( y ) - f ( x ) | < \epsilon \right]"#,
         r#"\phi = 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ \ddots } } }"#,

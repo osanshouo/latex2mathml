@@ -253,6 +253,7 @@ impl<'a> Parser<'a> {
                 self.next_token();
                 let open = match &self.cur_token {
                     Token::Paren(open) => *open,
+                    Token::Operator('.') => "",
                     token => {return Err(LatexError::MissingParensethis{
                         location: Token::Left, got: token.clone(),
                     })},
@@ -261,6 +262,7 @@ impl<'a> Parser<'a> {
                 self.next_token();
                 let close = match &self.cur_token {
                     Token::Paren(close) => close,
+                    Token::Operator('.') => "",
                     token => {return Err(LatexError::MissingParensethis{
                         location: Token::Right, got: token.clone(),
                     })},

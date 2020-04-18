@@ -303,6 +303,7 @@ mod tests {
             (r"\sin x",       r#"<mi>sin</mi><mi>x</mi>"#),
             (r"\operatorname{sn} x", r#"<mi>sn</mi><mi>x</mi>"#),
             (r"\left( x \right)", r#"<mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow>"#),
+            (r"\left( x \right.", r#"<mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix"></mo></mrow>"#),
             (r"\int dx",      r#"<mo>∫</mo><mi>d</mi><mi>x</mi>"#),
             (r"\oint_C dz",   r#"<msub><mo>∮</mo><mi>C</mi></msub><mi>d</mi><mi>z</mi>"#),
             (r"\overset{n}{X}", "<mover><mi>X</mi><mi>n</mi></mover>"),
