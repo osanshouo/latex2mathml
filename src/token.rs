@@ -39,6 +39,13 @@ pub enum Token {
 }
 
 impl Token {
+    pub(crate) fn acts_on_a_digit(&self) -> bool {
+        match self {
+            Token::Sqrt | Token::Frac | Token::Style(_) => true,
+            _ => false,
+        }
+    }
+
     pub fn from_command(command: &str) -> Token {
         match command {
             "mathrm"  => Token::Style(Variant::Normal),
