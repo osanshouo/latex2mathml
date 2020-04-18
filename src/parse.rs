@@ -26,7 +26,15 @@ impl<'a> Parser<'a> {
 
     fn next_token(&mut self) {
         self.cur_token = self.peek_token.clone();
-        self.peek_token = self.l.next_token();
+        self.peek_token = if 
+            (self.cur_token_is(&Token::Frac) || self.cur_token_is(&Token::Sqrt)) && self.l.cur.is_ascii_digit() 
+        {
+            let num = self.l.cur;
+            self.l.read_char();
+            Token::Number(format!("{}", num))
+        } else {
+            self.l.next_token()
+        };
     }
 
     fn cur_token_is(&self, expected_token: &Token) -> bool {

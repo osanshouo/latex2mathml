@@ -291,9 +291,12 @@ mod tests {
             (r"x = 3+\alpha", "<mi>x</mi><mo>=</mo><mn>3</mn><mo>+</mo><mi>α</mi>"),
             (r"\sin x",       "<mi>sin</mi><mi>x</mi>"),
             (r"\sqrt 2",      "<msqrt><mn>2</mn></msqrt>"),
+            (r"\sqrt12",      "<msqrt><mn>1</mn></msqrt><mn>2</mn>"),
             (r"\sqrt{x+2}",   "<msqrt><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow></msqrt>"),
             (r"\sqrt[3]{x}",  "<mroot><mi>x</mi><mn>3</mn></mroot>"),
             (r"\frac{1}{2}",  "<mfrac><mn>1</mn><mn>2</mn></mfrac>"),
+            (r"\frac12",      "<mfrac><mn>1</mn><mn>2</mn></mfrac>"),
+            (r"\frac{12}{5}", "<mfrac><mn>12</mn><mn>5</mn></mfrac>"),
             (r"x^2",          "<msup><mi>x</mi><mn>2</mn></msup>"),
             (r"g_{\mu\nu}",   "<msub><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub>"),
             (r"\dot{x}",      "<mover><mi>x</mi><mo accent=\"true\">\u{02d9}</mo></mover>"),
@@ -322,7 +325,7 @@ mod tests {
         ];
 
         for (problem, answer) in problems.iter() {
-            let mathml = convert_content(problem).unwrap();
+            let mathml = convert_content(dbg!(problem)).unwrap();
             assert_eq!(&mathml, answer);
         }
     }

@@ -13,8 +13,8 @@ use super::{
 #[derive(Debug, Clone)]
 pub(crate) struct Lexer<'a> {
     input: std::str::Chars<'a>,
-    cur: char,
-    peek: char,
+    pub(crate) cur: char,
+    pub(crate) peek: char,
 }
 
 impl<'a> Lexer<'a> {
@@ -31,7 +31,7 @@ impl<'a> Lexer<'a> {
     }
 
     /// 1 文字進む.
-    fn read_char(&mut self) -> char {
+    pub(crate) fn read_char(&mut self) -> char {
         let c = self.cur;
         self.cur = self.peek;
         self.peek = self.input.next().unwrap_or('\u{0}');
