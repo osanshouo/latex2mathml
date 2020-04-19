@@ -1,5 +1,6 @@
 use std::fmt;
 use super::attribute::{Variant, Accent, LineThickness, ColumnAlign};
+use crate::DisplayStyle;
 
 /// AST node
 #[derive(Debug, Clone, PartialEq)]
@@ -28,6 +29,7 @@ pub enum Node {
     Ampersand,
     NewLine,
     Slashed(Box<Node>),
+    Style(Option<DisplayStyle>, Box<Node>),
     Undefined(String),
 }
 
@@ -97,6 +99,11 @@ impl fmt::Display for Node {
                 write!(f, "{}", mathml)
             },
             Node::Text(text) => write!(f, "<mtext>{}</mtext>", text),
+            Node::Style(display, content) => match display {
+                Some(DisplayStyle::Block)  => write!(f, r#"<mstyle displaystyle="true">{}</mstyle>"#, content),
+                Some(DisplayStyle::Inline) => write!(f, r#"<mstyle displaystyle="false">{}</mstyle>"#, content),
+                None => write!(f, "<mstyle>{}</mstyle>", content),
+            },
             node => write!(f, "<mtext>[PARSE ERROR: {:?}]</mtext>", node),
         }
     }
