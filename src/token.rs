@@ -1,4 +1,5 @@
 use super::attribute::{Variant, Accent};
+use crate::DisplayStyle;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Token {
@@ -17,7 +18,7 @@ pub enum Token {
     Frac,
     Underscore,
     Circumflex,
-    Binom,
+    Binom(Option<DisplayStyle>),
     Overset,
     Underset,
     Overbrace(char),
@@ -43,7 +44,7 @@ pub enum Token {
 impl Token {
     pub(crate) fn acts_on_a_digit(&self) -> bool {
         match self {
-            Token::Sqrt | Token::Frac | Token::Binom | Token::Style(_) => true,
+            Token::Sqrt | Token::Frac | Token::Binom(_) | Token::Style(_) => true,
             _ => false,
         }
     }
@@ -72,7 +73,9 @@ impl Token {
             "begin"  => Token::Begin,
             "end"    => Token::End,
             "\\"     => Token::NewLine,
-            "binom"  => Token::Binom,
+            "binom"  => Token::Binom(None),
+            "tbinom"  => Token::Binom(Some(DisplayStyle::Inline)),
+            "dbinom"  => Token::Binom(Some(DisplayStyle::Block)),
             "overset"  => Token::Overset,
             "underset" => Token::Underset,
             "overbrace"  => Token::Overbrace('\u{23de}'),

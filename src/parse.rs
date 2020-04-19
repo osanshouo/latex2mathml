@@ -105,17 +105,23 @@ impl<'a> Parser<'a> {
                 let denominator = self.parse_node()?;
                 Node::Frac(Box::new(numerator), Box::new(denominator), LineThickness::Medium)
             },
-            Token::Binom => {
+            Token::Binom(display) => {
+                let display = *display;
                 self.next_token();
                 let numerator = self.parse_node()?;
                 self.next_token();
                 let denominator = self.parse_node()?;
-                Node::Fenced{
+
+                let binom = Node::Fenced {
                     open: "(",
                     close: ")",
                     content: Box::new(
                         Node::Frac(Box::new(numerator), Box::new(denominator), LineThickness::Length(0))
                     ),
+                };
+                match display {
+                    Some(display) => Node::Style(Some(display), Box::new(Node::Row(vec![binom]))),
+                    None          => binom
                 }
             },
             Token::Over(op, acc) => {
