@@ -1,5 +1,5 @@
 use std::fmt;
-use super::attribute::{Variant, Accent, ColumnAlign};
+use super::attribute::{Variant, Accent, LineThickness, ColumnAlign};
 
 /// AST node
 #[derive(Debug, Clone, PartialEq)]
@@ -19,7 +19,7 @@ pub enum Node {
     Under(Box<Node>, Box<Node>),
     UnderOver { target: Box<Node>, under: Box<Node>, over: Box<Node>},
     Sqrt(Option<Box<Node>>, Box<Node>),
-    Frac(Box<Node>, Box<Node>),
+    Frac(Box<Node>, Box<Node>, LineThickness),
     Row(Vec<Node>),
     Fenced { open: &'static str, close: &'static str, content: Box<Node> },
     OtherOperator(&'static str),
@@ -60,7 +60,7 @@ impl fmt::Display for Node {
                 Some(deg) => write!(f, "<mroot>{}{}</mroot>", content, deg),
                 None      => write!(f, "<msqrt>{}</msqrt>", content),
             },
-            Node::Frac(num, denom) => write!(f, "<mfrac>{}{}</mfrac>", num, denom),
+            Node::Frac(num, denom, lt) => write!(f, "<mfrac{}>{}{}</mfrac>", lt, num, denom),
             Node::Row(vec) => write!(f, "<mrow>{}</mrow>", 
                 vec.iter().map(|node| format!("{}", node)).collect::<String>()
             ),

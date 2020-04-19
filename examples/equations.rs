@@ -21,6 +21,7 @@ fn main() {
         r#"\overline{x + y} , \underline{x + y}, \widehat{x + y}, \widetilde{x + y} , \overrightarrow{A + B} , \overleftarrow{A + B}"#,
         r#"\left. \frac{\pi}{2} \right\} \, \left( x \right) \, \left\{ \frac12 \right."#,
         r#"\mu \left( \bigcup_i E_i \right) = \sum_i \mu ( E_i )"#,
+        r#"{}_n C_k , \ \binom{n}{k} , \ \binom12"#,
         r#"\forall \epsilon > 0 \exists \delta > 0 \forall y \left[ | y - x | < \delta \Rightarrow | f ( y ) - f ( x ) | < \epsilon \right]"#,
         r#"\phi = 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ 1 + \frac{ 1 }{ \ddots } } }"#,
         r#"G / \ker f \cong \mathrm{im}\,f"#,

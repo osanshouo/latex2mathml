@@ -55,6 +55,24 @@ impl fmt::Display for Accent {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum LineThickness {
+    Thin,
+    Medium,
+    Thick,
+    Length(u8),
+}
+impl fmt::Display for LineThickness {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            LineThickness::Thin      => write!(f, r#" linethickness="thin""#),
+            LineThickness::Medium    => write!(f, r#""#),
+            LineThickness::Thick     => write!(f, r#" linethickness="medium""#),
+            LineThickness::Length(l) => write!(f, r#" linethickness="{}""#, l),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ColumnAlign {
     Center,

@@ -1,5 +1,5 @@
 use super::{
-    attribute::{Variant, Accent, ColumnAlign},
+    attribute::{Variant, Accent, LineThickness, ColumnAlign},
     token::Token, 
     lexer::Lexer,
     ast::Node,
@@ -103,7 +103,20 @@ impl<'a> Parser<'a> {
                 let numerator = self.parse_node()?;
                 self.next_token();
                 let denominator = self.parse_node()?;
-                Node::Frac(Box::new(numerator), Box::new(denominator))
+                Node::Frac(Box::new(numerator), Box::new(denominator), LineThickness::Medium)
+            },
+            Token::Binom => {
+                self.next_token();
+                let numerator = self.parse_node()?;
+                self.next_token();
+                let denominator = self.parse_node()?;
+                Node::Fenced{
+                    open: "(",
+                    close: ")",
+                    content: Box::new(
+                        Node::Frac(Box::new(numerator), Box::new(denominator), LineThickness::Length(0))
+                    ),
+                }
             },
             Token::Over(op, acc) => {
                 let (op, acc) = (*op, *acc);
