@@ -69,7 +69,7 @@ impl Token {
             "frac"   => Token::Frac,
             "left"   => Token::Left,
             "right"  => Token::Right,
-            "middl"  => Token::Middle,
+            "middle"  => Token::Middle,
             "begin"  => Token::Begin,
             "end"    => Token::End,
             "\\"     => Token::NewLine,

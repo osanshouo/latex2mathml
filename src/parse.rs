@@ -288,6 +288,15 @@ impl<'a> Parser<'a> {
                 };
                 Node::Fenced{open, close, content: Box::new(content)}
             },
+            Token::Middle => {
+                let stretchy = true;
+                self.next_token();
+                match self.parse_single_node()? {
+                    Node::Operator(op) => Node::StrechedOp(stretchy, op.to_string()),
+                    Node::OtherOperator(op) => Node::StrechedOp(stretchy, op.to_owned()),
+                    _ => unimplemented!()
+                }
+            },
             Token::Begin => {
                 self.next_token();
                 // 環境名を読み込む

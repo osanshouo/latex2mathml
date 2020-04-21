@@ -23,6 +23,7 @@ pub enum Node {
     Frac(Box<Node>, Box<Node>, LineThickness),
     Row(Vec<Node>),
     Fenced { open: &'static str, close: &'static str, content: Box<Node> },
+    StrechedOp(bool, String),
     OtherOperator(&'static str),
     Text(String),
     Matrix(Vec<Node>, ColumnAlign),
@@ -69,6 +70,7 @@ impl fmt::Display for Node {
             Node::Fenced{open, close, content} => {
                 write!(f, r#"<mrow><mo stretchy="true" form="prefix">{}</mo>{}<mo stretchy="true" form="postfix">{}</mo></mrow>"#, open, content, close)
             },
+            Node::StrechedOp(stretchy, op) => write!(f, r#"<mo stretchy="{}">{}</mo>"#, stretchy, op),
             Node::OtherOperator(op) => write!(f, "<mo>{}</mo>", op),
             Node::Slashed(node) => match &**node {
                 Node::Letter(x, var) => write!(f, "<mi mathvariant=\"{}\">{}&#x0338;</mi>", var, x),

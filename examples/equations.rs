@@ -31,6 +31,7 @@ fn main() {
         r#"\lim_{n \to \infty} P \left( \frac{ S_n - n \mu }{ \sqrt{ n } \sigma } \leq \alpha \right) = \frac{ 1 }{ \sqrt{ 2 \pi } } \int_{- \infty}^\alpha \exp \left( - \frac{ x^2 }{ 2 } \right) \, dx"#,
         r#"f: \mathbb{C} \to \mathbb{R} , \ z \mapsto z \bar{z}"#,
         r#"( \forall \lambda \in \Lambda ) [ A_\lambda \neq \emptyset ] \Rightarrow \prod_{\lambda \in \Lambda} A_\lambda \neq \emptyset"#,
+        r#"A = \left\{z \in \mathbb{C} \;\middle|\; \zeta \left( z \right) = 0 \; \text{and} \; \Re z \neq \frac12 \right\}"#,
         r#"\# \mathbb{N} = \aleph_0"#,
         r#"\lnot ( P \lor Q) \Leftrightarrow ( \lnot P ) \land ( \lnot Q )"#,
         r#"0 \longrightarrow L \overset{\phi}{\longrightarrow} M \overset{\psi}{\longrightarrow} N \longrightarrow 0"#,
