@@ -17,7 +17,7 @@ impl fmt::Display for LatexError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             LatexError::UnexpectedToken{expected, got} => write!(f, 
-                "The token \"{:?}\" is expected, but the token \"{:?} is found.\"", 
+                "The token \"{:?}\" is expected, but the token \"{:?}\" is found.\"", 
                 expected, got
             ),
             LatexError::MissingParensethis{location, got} => write!(f, 
