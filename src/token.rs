@@ -28,6 +28,7 @@ pub enum Token {
     Lim(&'static str),
     Space(f32),
     Style(Variant),
+    Big(&'static str),
     Over(char, Accent),
     Under(char, Accent),
     Operator(char),
@@ -142,6 +143,37 @@ impl Token {
             "bitotimes" => Token::BigOp('⨂'),
             "bigoplus"  => Token::BigOp('⨁'),
             "biguplus"  => Token::BigOp('⨄'),
+            "bigl"   => Token::Big("1.2em"),
+            "bigr"   => Token::Big("1.2em"),
+            "Bigl"   => Token::Big("1.623em"),
+            "Bigr"   => Token::Big("1.623em"),
+            "biggl"  => Token::Big("2.047em"),
+            "biggr"  => Token::Big("2.047em"),
+            "Biggl"  => Token::Big("2.470em"),
+            "Biggr"  => Token::Big("2.470em"),
+            // <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            //   <semantics>
+            //     <mrow>
+            //         <mi>a</mi>
+            //         <mrow class="MJX-TeXAtom-OPEN"><mo maxsize="2.470em" minsize="2.470em">(</mo></ mrow>
+            //         <mi>b</mi>
+            //         <mrow class="MJX-TeXAtom-OPEN"><mo maxsize="2.047em" minsize="2.047em">(</mo></mrow>
+            //         <mi>c</mi>
+            //         <mrow class="MJX-TeXAtom-OPEN"><mo maxsize="1.623em" minsize="1.623em">(</mo></mrow>
+            //         <mi>d</mi>
+            //         <mrow class="MJX-TeXAtom-OPEN"><mo maxsize="1.2em" minsize="1.2em">(</mo></mrow>
+            //         <mi>e</mi>
+            //         <mo stretchy="false">(</mo>
+            //         <mi>f</mi>
+            //         <mo>+</mo>
+            //         <mi>g</mi>
+            //         <mo stretchy="false">)</mo>
+            //         <mrow class="MJX-TeXAtom-CLOSE"><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow>
+            //         <mrow class="MJX-TeXAtom-CLOSE"><mo maxsize="1.623em" minsize="1.623em">)</mo></mrow>
+            //         <mrow class="MJX-TeXAtom-CLOSE"><mo maxsize="2.047em" minsize="2.047em">)</mo></mrow>
+            //         <mrow class="MJX-TeXAtom-CLOSE"><mo maxsize="2.470em" minsize="2.470em">)</mo></mrow>
+            //   </semantics>
+            // </math>
             "sin"    => Token::Function("sin"),
             "cos"    => Token::Function("cos"),
             "tan"    => Token::Function("tan"),

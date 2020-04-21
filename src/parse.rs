@@ -297,6 +297,16 @@ impl<'a> Parser<'a> {
                     _ => unimplemented!()
                 }
             },
+            Token::Big(size) => {
+                let size = *size;
+                self.next_token();
+                match self.cur_token {
+                    Token::Paren(paren) => Node::SizedParen{ size, paren },
+                    _ => {return Err(LatexError::UnexpectedToken{
+                        expected: Token::Paren(""), got: self.cur_token.clone(),
+                    });},
+                }
+            },
             Token::Begin => {
                 self.next_token();
                 // 環境名を読み込む
